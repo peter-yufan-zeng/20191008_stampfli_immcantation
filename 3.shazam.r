@@ -12,6 +12,9 @@ db_obs_count_total <- observedMutations(all, sequenceColumn="SEQUENCE_IMGT",
                                   frequency=FALSE,
                                   combine = T,
                                   nproc=4)
+
+
+
 # Show new mutation count columns
 db_obs_count %>% 
   select(SEQUENCE_ID, starts_with("MU_COUNT_")) %>%
@@ -81,6 +84,15 @@ CairoPNG(filename = "mutation_frequency_silent_replacement.png",
          fallback_resolution = 600,res = 600)
 alakazam::gridPlot(g1, g2, g3, ncol=3)
 dev.off()
+
+write.csv(db_obs_freq, "./Figures/mutation_frequency_silent_replacement.csv")
+write.csv(db_obs_freq_total, "./Figures/mutation_frequency_total.csv")
+write.csv(db_obs_count, "./Figures/mutation_count_silent_replacement.csv")
+write.csv(db_obs_count_total, "./Figures/mutation_count_total.csv")
+
+
+
+
 
 # Calculate  mutation counts for individual CDRs and FWRs
 db_obs_v <- observedMutations(all, sequenceColumn="SEQUENCE_IMGT",

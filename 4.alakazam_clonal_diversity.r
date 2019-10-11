@@ -56,14 +56,14 @@ sample_div <- rarefyDiversity(all, "SAMPLE", min_q=0, max_q=4, step_q=0.05,
 # Compare diversity curve across values in the "ISOTYPE" column
 # Analyse is restricted to ISOTYPE values with at least 30 sequences by min_n=30
 # Excluded groups are indicated by a warning message
-isotype_div <- rarefyDiversity(all, "CREGION", min_n=30, min_q=0, max_q=4, 
+group_div <- rarefyDiversity(all, "GROUP", min_n=30, min_q=0, max_q=4, 
                                step_q=0.05, ci=0.95, nboot=200)
 
 # Plot a log-log (log_q=TRUE, log_d=TRUE) plot of sample diversity
 # Indicate number of sequences resampled from each group in the title
 sample_main <- paste0("Sample diversity (n=", sample_div@n, ")")
 #sample_colors <- c("-1h"="seagreen", "+7d"="steelblue")
-CairoPNG(filename = "sample_diversity.png",
+CairoPNG(filename = "./Figures/sample_diversity.png",
          width = 5000, height = 5000, pointsize = 12,
          fallback_resolution = 600,res = 600)
 plot(sample_div, main_title=sample_main, 
@@ -71,12 +71,12 @@ plot(sample_div, main_title=sample_main,
 dev.off()
 
 
-CairoPNG(filename = "isotype_diversity.png",
+CairoPNG(filename = "./Figures/group_diversity.png",
          width = 5000, height = 5000, pointsize = 12,
          fallback_resolution = 600,res = 600)
-isotype_main <- paste0("Isotype diversity (n=", isotype_div@n, ")")
-plot(isotype_div, main_title=isotype_main, 
-     legend_title="Isotype")
+group_main <- paste0("Group diversity (n=", group_div@n, ")")
+plot(group_div, main_title=group_main, 
+     legend_title="group")
 dev.off()
 
 sample_test <- testDiversity(all, 2, "SAMPLE", nboot=200)
