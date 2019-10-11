@@ -169,21 +169,12 @@ write.csv(plot_temp_IgA,"./hill_number_iga.csv")
 CairoPNG(filename = "sample_diversity_fixed_order.png",
          width = 20000, height = 10000, pointsize = 12,
          fallback_resolution = 600,res = 600)
-g2 <-ggplot(plot_temp_IgA, aes(x=SAMPLE, y=D, color=SAMPLE)) + 
-        theme_bw() + ggtitle("Hills Diversity") +
-        xlab("Sample") + ylab("Mean QD +_") +
- #       scale_fill_brewer(palette="Dark2") +
-        geom_boxplot() +
-        geom_errorbar(aes(ymin=D_LOWER, ymax=D_UPPER), width=.2,
-                      position=position_dodge(.9)) + facet_grid(. ~ Q) +scale_color_manual(values=c("black","black",
-                                                                                                    "blue", "blue", "blue",
-                                                                                                    "red","red","red"))
 g3 <-ggplot(plot_temp_IgG, aes(x=SAMPLE, y=D,color=SAMPLE)) + 
         theme_bw() + ggtitle("Hills Diversity") +
         xlab("Sample") + ylab("Mean QD +_") +
  #       scale_fill_brewer(palette="Dark2") +
         geom_boxplot() +scale_color_manual(values=c("black","black", "black",
-                                                    "blue", "blue", "blue", "blue", "blue", "blue", "blue",
+                                                    "blue", "blue", "blue", "blue", "blue", "blue", "blue","blue",
                                                     "green","green","green",
                                                     "red","red","red","red","red","red","red","red","red"
                                                     )) +
